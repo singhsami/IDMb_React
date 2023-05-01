@@ -1,17 +1,22 @@
-
 import './App.css';
 import Home from "../src/pages/Home"
-import Category from './pages/Category';
-import {BrowserRouter as Router,Route,Routes} from "react-router-dom"
-import { routePath } from './constants/route';
+import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
+import Header from "../src/components/common/Header"
+import Recipes from './pages/Recipes';
+import RecipeDetails from './components/common/RecipeDetails';
+
 function App() {
   return (
     <Router>
+      <Header />
+      
       <Routes>
-        <Route path={routePath.home} element={<Home />} />
-        <Route path={routePath.categories} element={<Category/> }/>
-        <Route path={routePath.invalid} element={<Home/> }/>
+        <Route path="/" element={<Home />} />
+        <Route path="/recipes" element={<Recipes />} />
+        <Route path="/recipes/:id" element={<RecipeDetails />} />
       </Routes>
+        
+     
     </Router>
   );
 }

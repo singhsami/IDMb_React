@@ -1,36 +1,31 @@
-import React from 'react'
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import {Link} from "react-router-dom"
-import { routePath } from '../../constants/route';
+import React, { useState } from 'react'
+import { Input,Form,Container, Header } from 'semantic-ui-react'
 
-const Search = ({open,handleClose}) => {
+const Search = ({searchQuery,setsearchQuery}) => {
 
-  const openMenu = Boolean(open);
+    const [value,setValue]=useState("")
+
+    const onFormSubmit = () =>{
+     setsearchQuery(value)
+   
+    }
 
   return (
-    <div>
-        <Menu
-        id="basic-menu"
-        anchorEl={open}
-        open={openMenu}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-      >
-      <Link to={`${routePath.categories}?category=popular`} style={{color:"inherit",textDecoration:"none"}}>
-        <MenuItem onClick={handleClose}>Popular</MenuItem>
-      </Link> 
-      <Link to={`${routePath.categories}?category=toprated`} style={{color:"inherit",textDecoration:"none"}}> 
-        <MenuItem onClick={handleClose}>Top Rated</MenuItem>
-      </Link>
-      <Link to={`${routePath.categories}?category=upcoming`} style={{color:"inherit",textDecoration:"none"}}>  
-        <MenuItem onClick={handleClose}>Upcoming</MenuItem>
-      </Link>
-      
-      </Menu>
-    </div>
+    <div class="recipie-page">
+    <h1>Search Recipes With 
+      <span style={{color:"skyblue"}}> Our Recipes</span>
+    </h1>
+    <p>Input Recipes seperated by comma</p>
+
+    <Form onSubmit={onFormSubmit}>
+    <Input onChange={(e)=>setValue(e.target.value)}placeholder="tomato,potato,pizza" 
+    action={{icon:"search",color:"primary"}}/>
+    </Form>
+
+    <Container>
+      <Header style={{marginTop:10}} content={`RECIPE LIST FOR ${searchQuery}`}/>
+    </Container>
+  </div>
   )
 }
 

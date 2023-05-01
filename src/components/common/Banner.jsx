@@ -1,50 +1,18 @@
 import React from 'react'
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import {Box} from "@mui/material"
+import { Button } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 
-const responsive = {
-    
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 1
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 1
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1
-    }
-  };
-
-
-const Banner = ({movies}) => {
+const Banner = () => {
   return (
-    <Box style={{width:"65%",paddingTop:"40px"}}>
-      <Carousel 
-      responsive={responsive}
-      swipeable={false}
-      draggable={false}
-      infinite={true}
-      autoPlay={true}
-      autoPlaySpeed={2000}
-      keyBoardControl={true}
-      slidesToslides={1}
-
-      >
-  {
-    movies.map(movie => (
-            
-            <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} style={{width:"100%"}} alt="Banner" />
-            
-          
-        ))
-  }
-</Carousel>;
-    </Box>
+    <div className='bg-image'>
+    <div  className='bg-text'>
+    
+    <h1 className="bg-title">Search Recipes & More</h1>
+    <p className='bg-textH1'>Word's Leading Recipe Plateform</p>
+        <Button  as ={ Link } to="/recipes" color="pink" content="SEARCH   RECIPES"/>
+    </div>
+    </div>
   )
 }
 
